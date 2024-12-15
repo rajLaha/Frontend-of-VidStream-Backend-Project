@@ -29,7 +29,7 @@ const postUploadHandler = async (e) => {
       location.reload();
     } else {
       alert(responseMsg.message || 'Post Uploaded Succesfully!');
-      location.href = `/form/homepageVid.html`;
+      location.href = `./homepageVid.html`;
     }
   } catch (error) {
     alert(error || 'Post Upload failed! Please try again.');

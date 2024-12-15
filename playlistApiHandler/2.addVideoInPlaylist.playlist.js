@@ -80,7 +80,7 @@ addPlaylistBtn.addEventListener('click', async () => {
       createPlaylistButton.innerHTML =
         '<i class="fa-solid fa-plus mr-2"></i> Create Playlist';
       createPlaylistButton.addEventListener('click', () => {
-        window.location.href = '/form/uploadPlaylistPage.html'; // Redirect to create playlist page
+        window.location.href = './uploadPlaylistPage.html'; // Redirect to create playlist page
       });
 
       contentContainer.appendChild(noPlaylistMessage);

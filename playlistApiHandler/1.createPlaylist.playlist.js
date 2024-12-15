@@ -31,7 +31,7 @@ const createPlaylistHandler = async (e) => {
       location.reload();
     } else {
       alert(responseMsg.message || 'Playlist Created Succesfully!');
-      location.href = `/form/homepageVid.html`;
+      location.href = `./homepageVid.html`;
     }
   } catch (error) {
     alert(error || 'Playlist Creation failed! Please try again.');

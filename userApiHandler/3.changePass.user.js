@@ -27,7 +27,7 @@ const userLoginApi = async (e) => {
       (() => {
         setTimeout(() => {
           alert(`Password Changed Succesfully`);
-          location.href = '/form/homepageVid.html';
+          location.href = './homepageVid.html';
         }, 2000);
       })();
     } else {

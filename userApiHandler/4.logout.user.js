@@ -15,7 +15,7 @@ const logoutHandler = async () => {
     if (response.status == 200) {
       (() => {
         setTimeout(() => {
-          location.href = '/form/index.html';
+          location.href = './index.html';
         }, 2000);
       })();
     } else {

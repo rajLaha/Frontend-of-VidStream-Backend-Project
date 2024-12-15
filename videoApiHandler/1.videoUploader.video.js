@@ -27,7 +27,7 @@ const videoUploadHandler = async (e) => {
       location.reload();
     } else {
       alert(responseMsg.message || 'Video Uploaded Succesfully!');
-      location.href = `/form/homepageVid.html`;
+      location.href = `./homepageVid.html`;
     }
   } catch (error) {
     console.log(error);

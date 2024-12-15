@@ -80,7 +80,7 @@ function renderVideos(videos) {
   document.querySelectorAll('.videoImages').forEach((videoImage) => {
     videoImage.addEventListener('click', (event) => {
       // Update the URL with the userId parameter without refreshing the page
-      window.location.href = `/form/videoPlayer.html?query=${encodeURIComponent(
+      window.location.href = `./videoPlayer.html?query=${encodeURIComponent(
         event.target.id
       )}`;
     });

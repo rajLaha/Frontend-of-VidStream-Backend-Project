@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           if (response.ok) {
             // Update the URL with the userName and userId parameter
-            window.location.href = `/form/viewProfile.html?username=${encodeURIComponent(
+            window.location.href = `./viewProfile.html?username=${encodeURIComponent(
               data.data.userName
             )}?query=${encodeURIComponent(data.data._id)}`;
           }

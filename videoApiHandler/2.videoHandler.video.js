@@ -271,7 +271,7 @@ const videoDeleteHandler = async () => {
 
     if (response.ok) {
       alert('Video Delete Succesfully!');
-      location.href = `/form/homepageVid.html`;
+      location.href = `./homepageVid.html`;
     } else {
       alert(response.message);
       location.reload();

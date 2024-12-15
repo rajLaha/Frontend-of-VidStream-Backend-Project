@@ -29,7 +29,7 @@ const userLoginApi = async (e) => {
     });
 
     if (response.status == 200) {
-      location.href = '/form/homepageVid.html';
+      location.href = './homepageVid.html';
     } else {
       const errorData = await response.json();
       alert(errorData);

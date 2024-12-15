@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Add an event listener for the "View Playlist" button
       playlistBox.querySelector('button').addEventListener('click', (e) => {
         // Update the URL with the userName and userId parameter
-        window.location.href = `/form/viewPlaylistPage.html?query=${encodeURIComponent(
+        window.location.href = `./viewPlaylistPage.html?query=${encodeURIComponent(
           e.target.id
         )}`;
       });
