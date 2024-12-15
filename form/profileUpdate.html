@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Profile</title>
+    <link
+      rel="shortcut icon"
+      href="./faviconImages/android-chrome-192x192.png"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        padding-top: 40px; /* Add padding to the body for top and bottom spacing */
+        padding-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-800 flex flex-col items-center justify-center">
+    <div class="mb-8 flex justify-end space-x-4">
+      <button
+        class="bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md"
+      >
+        <a href="./homepageVid.html">Home</a>
+      </button>
+    </div>
+
+    <div
+      class="container mx-auto bg-gray-700 bg-opacity-70 backdrop-filter backdrop-blur-lg rounded-lg p-12 shadow-lg max-w-2xl"
+    >
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-200">Update Your Profile</h2>
+        <p class="text-gray-100">
+          Make changes to your profile information below.
+        </p>
+      </div>
+
+      <!-- Cover Image Form -->
+      <form
+        action="/cover-image"
+        method="post"
+        class="space-y-6 mb-8"
+        id="coverImageForm"
+        enctype="multipart/form-data"
+      >
+        <!-- Cover Image -->
+        <div class="flex flex-col items-center mb-4">
+          <label for="coverImage" class="font-semibold text-gray-700 mb-2"
+            >Cover Image</label
+          >
+          <div
+            class="w-full h-40 mb-4 bg-gray-100 rounded-lg shadow-md flex items-center justify-center"
+          >
+            <img
+              id="coverPreview"
+              src="https://via.placeholder.com/800x200/cfd8e0/9da7b2"
+              alt="Cover Image Preview"
+              class="w-full h-full object-cover rounded-lg"
+            />
+          </div>
+          <input
+            type="file"
+            id="coverImage"
+            name="coverImage"
+            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-indigo-100 file:text-indigo-700 hover:file:bg-indigo-200"
+            accept="image/*"
+            onchange="previewCover(event)"
+          />
+        </div>
+
+        <!-- Cover Image Submit Button -->
+        <button
+          type="submit"
+          class="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition-colors"
+        >
+          Update Cover Image
+        </button>
+      </form>
+
+      <!-- Avatar Form -->
+      <form
+        action="/avatar"
+        method="post"
+        class="space-y-6 mb-8"
+        id="avatarForm"
+        enctype="multipart/form-data"
+      >
+        <!-- Avatar -->
+        <div class="flex flex-col items-center mb-4">
+          <label for="avatar" class="font-semibold text-gray-700 mb-2"
+            >Avatar</label
+          >
+          <div class="w-24 h-24 mb-4 bg-gray-100 rounded-full shadow-md">
+            <img
+              id="avatarPreview"
+              src="https://via.placeholder.com/150/a8b4c8/ffffff"
+              alt="Avatar Preview"
+              class="w-full h-full object-cover rounded-full"
+            />
+          </div>
+          <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:bg-pink-100 file:text-pink-700 hover:file:bg-pink-200"
+            accept="image/*"
+            onchange="previewAvatar(event)"
+          />
+        </div>
+
+        <!-- Avatar Submit Button -->
+        <button
+          type="submit"
+          class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition-colors"
+        >
+          Update Avatar
+        </button>
+      </form>
+
+      <!-- Username and Full Name Form -->
+      <form
+        action="/update-account"
+        method="post"
+        class="space-y-6 mb-8"
+        id="profileForm"
+      >
+        <!-- Full Name -->
+        <div class="mb-4">
+          <label for="fullName" class="block text-gray-300 font-semibold mb-2"
+            >Full Name</label
+          >
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            class="block w-full p-3 border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-600 text-gray-300"
+            placeholder="Enter your new full name"
+          />
+        </div>
+
+        <!-- User Name -->
+        <div class="mb-4">
+          <label for="userName" class="block text-gray-300 font-semibold mb-2"
+            >User Name</label
+          >
+          <input
+            type="text"
+            id="userName"
+            name="userName"
+            class="block w-full p-3 border rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-600 text-gray-300"
+            placeholder="Enter your new username"
+          />
+        </div>
+
+        <!-- Username and Full Name Submit Button -->
+        <button
+          type="submit"
+          class="w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition-colors"
+        >
+          Update Name & Username
+        </button>
+      </form>
+    </div>
+
+    <!-- Script for Preview avatar and cover image -->
+    <script>
+      // Function to preview avatar
+      function previewAvatar(event) {
+        const avatarPreview = document.getElementById('avatarPreview');
+        avatarPreview.src = URL.createObjectURL(event.target.files[0]);
+      }
+
+      // Function to preview cover image
+      function previewCover(event) {
+        const coverPreview = document.getElementById('coverPreview');
+        coverPreview.src = URL.createObjectURL(event.target.files[0]);
+      }
+    </script>
+
+    <script
+      type="module"
+      src="./userApiHandler/6.profileUpdate.user.js"
+    ></script>
+  </body>
+</html>

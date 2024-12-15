@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community Post Uploader</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #2a2e35;
+        color: #e5e7eb;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body class="flex items-center justify-center">
+    <!-- Loader -->
+    <div
+      id="loader"
+      class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center"
+    >
+      <div
+        class="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500"
+      ></div>
+    </div>
+
+    <!-- Main Container -->
+    <div
+      class="container mx-auto bg-gray-800 bg-opacity-90 rounded-lg p-8 shadow-lg max-w-2xl"
+    >
+      <!-- Home Button -->
+      <button
+        class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg mb-6"
+      >
+        <a href="/form/homepageVid.html">Home</a>
+      </button>
+
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-100">
+          Create a Community Post
+        </h2>
+        <p class="text-gray-400">Share your thoughts with your audience.</p>
+      </div>
+
+      <!-- Post Upload Form -->
+      <form
+        action="/"
+        method="post"
+        id="postForm"
+        class="space-y-6"
+        enctype="multipart/form-data"
+      >
+        <!-- Content Input -->
+        <div>
+          <label for="content" class="block text-gray-300 font-semibold mb-2"
+            >Post Content</label
+          >
+          <textarea
+            id="content"
+            name="content"
+            rows="5"
+            class="block w-full p-3 border border-gray-600 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-700 text-gray-200"
+            placeholder="Write your post content here..."
+            required
+          ></textarea>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="flex flex-col items-center">
+          <label for="image" class="font-semibold text-gray-300 mb-2"
+            >Image (Optional)</label
+          >
+          <div
+            class="w-48 h-32 mb-4 bg-gray-700 rounded-lg shadow-md flex items-center justify-center"
+          >
+            <img
+              id="imagePreview"
+              src="https://via.placeholder.com/150x100"
+              alt="Image Preview"
+              class="w-full h-full object-cover rounded-lg"
+            />
+          </div>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-gray-700 file:text-gray-200 hover:file:bg-gray-600"
+            onchange="previewImage(event)"
+          />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-6">
+          <button
+            type="submit"
+            class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition-colors"
+          >
+            Post Now
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Script to preview uploaded image -->
+    <script>
+      function previewImage(event) {
+        const imagePreview = document.getElementById('imagePreview');
+        imagePreview.src = URL.createObjectURL(event.target.files[0]);
+      }
+    </script>
+    <script type="module" src="./postApiHandler/3.createPost.post.js"></script>
+  </body>
+</html>

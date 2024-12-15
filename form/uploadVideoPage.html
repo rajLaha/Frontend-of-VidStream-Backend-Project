@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Video</title>
+    <link
+      rel="shortcut icon"
+      href="./faviconImages/android-chrome-192x192.png"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #2a2e35;
+        color: #e5e7eb;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body class="flex items-center justify-center">
+    <!-- Loader -->
+    <div
+      id="loader"
+      class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center"
+    >
+      <div
+        class="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500"
+      ></div>
+    </div>
+
+    <div
+      class="container mx-auto bg-gray-800 bg-opacity-90 rounded-lg p-8 shadow-lg max-w-2xl"
+    >
+      <!-- Home Button -->
+      <button
+        class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg"
+      >
+        <a href="/form/homepageVid.html">Home</a>
+      </button>
+
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-100">Upload Your Video</h2>
+        <p class="text-gray-400">
+          Fill in the details below to upload your video.
+        </p>
+      </div>
+
+      <!-- Upload Video Form -->
+      <form
+        action="/"
+        method="post"
+        id="uploadForm"
+        class="space-y-6"
+        enctype="multipart/form-data"
+      >
+        <!-- Video File Upload -->
+        <div>
+          <label for="video" class="block text-gray-300 font-semibold mb-2"
+            >Video File</label
+          >
+          <input
+            type="file"
+            id="video"
+            name="videoFile"
+            accept="video/*"
+            class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-gray-700 file:text-gray-200 hover:file:bg-gray-600"
+            required
+          />
+        </div>
+
+        <!-- Thumbnail Upload -->
+        <div class="flex flex-col items-center">
+          <label for="thumbnail" class="font-semibold text-gray-300 mb-2"
+            >Thumbnail</label
+          >
+          <div
+            class="w-48 h-32 mb-4 bg-gray-700 rounded-lg shadow-md flex items-center justify-center"
+          >
+            <img
+              id="thumbnailPreview"
+              src="https://via.placeholder.com/150x100"
+              alt="Thumbnail Preview"
+              class="w-full h-full object-cover rounded-lg"
+            />
+          </div>
+          <input
+            type="file"
+            id="thumbnail"
+            name="thumbnail"
+            accept="image/*"
+            class="block w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-gray-700 file:text-gray-200 hover:file:bg-gray-600"
+            onchange="previewThumbnail(event)"
+            required
+          />
+        </div>
+
+        <!-- Video Title -->
+        <div>
+          <label for="title" class="block text-gray-300 font-semibold mb-2"
+            >Video Title</label
+          >
+          <input
+            type="text"
+            id="title"
+            name="title"
+            class="block w-full p-3 border border-gray-600 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-700 text-gray-200"
+            placeholder="Enter video title"
+            required
+          />
+        </div>
+
+        <!-- Video Description -->
+        <div>
+          <label
+            for="description"
+            class="block text-gray-300 font-semibold mb-2"
+            >Description</label
+          >
+          <textarea
+            id="description"
+            name="description"
+            rows="4"
+            class="block w-full p-3 border border-gray-600 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-gray-700 text-gray-200"
+            placeholder="Enter video description"
+            required
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-6">
+          <button
+            type="submit"
+            class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 px-6 rounded-md shadow-lg transition-colors"
+          >
+            Upload Video
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Script to preview thumbnail image -->
+    <script>
+      function previewThumbnail(event) {
+        const thumbnailPreview = document.getElementById('thumbnailPreview');
+        thumbnailPreview.src = URL.createObjectURL(event.target.files[0]);
+      }
+    </script>
+
+    <script
+      type="module"
+      src="./videoApiHandler/1.videoUploader.video.js"
+    ></script>
+  </body>
+</html>

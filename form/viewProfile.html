@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link
+      rel="shortcut icon"
+      href="./faviconImages/android-chrome-192x192.png"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"
+      integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #2a2e35;
+        color: #e5e7eb;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+
+      .active-nav {
+        background-color: #4f46e5;
+      }
+
+      .content-section {
+        display: none;
+      }
+
+      .content-section.active {
+        display: block;
+      }
+
+      /* Like button */
+      .like-button {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .like-button .likes-count {
+        margin-left: 4px;
+      }
+
+      /* Subscribe button styling */
+      .homeBtn,
+      .profileUpdateBtn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 0.875rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .home {
+        background-color: #e11d48;
+        color: white;
+      }
+
+      .home:hover {
+        background-color: #c81e38;
+      }
+
+      /* Container for subscribe info */
+      .homeSection {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1rem;
+      }
+
+      /* Subscribe button styling */
+      .subscribe-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 0.875rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .subscribed {
+        background-color: #585682;
+        color: white;
+      }
+
+      .subscribe {
+        background-color: #e11d48;
+        color: white;
+      }
+
+      .subscribe:hover {
+        background-color: #c81e38;
+      }
+
+      .subscribed:hover {
+        background-color: #454782;
+      }
+
+      .subscribe-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 1rem;
+      }
+
+      .subscriber-count {
+        font-size: 0.875rem;
+        color: #e5e7eb;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      class="container mx-auto bg-gray-800 bg-opacity-90 rounded-lg shadow-lg p-8"
+    >
+      <!-- Cover Image -->
+      <div
+        class="h-[400px] w-full bg-gray-700 bg-cover bg-center rounded-lg relative"
+        id="coverImage"
+        style="background-image: url('https://via.placeholder.com/1200x300')"
+      >
+        <!-- Avatar -->
+        <img
+          src="https://via.placeholder.com/150"
+          alt="Avatar"
+          id="avatar"
+          class="absolute bottom-0 left-8 transform translate-y-1/2 w-32 h-32 rounded-full border-4 border-gray-800"
+        />
+      </div>
+
+      <!-- User Info -->
+      <div class="mt-20 text-center">
+        <h1 class="text-2xl font-bold text-gray-100" id="userName">John Doe</h1>
+        <p class="text-gray-400" id="email">johndoe@example.com</p>
+
+        <!-- Subscribe Button -->
+        <div class="homeSection">
+          <div>
+            <button class="homeBtn home mr-[15px]">
+              <a href="./homepageVid.html">Home</a>
+            </button>
+
+            <button class="profileUpdateBtn home bg-indigo-500 hover:bg-indigo-600">
+              <a href="./profileUpdate.html">Update Profile</a>
+            </button>
+          </div>
+          <!-- Subscribe Button -->
+          <div class="subscribe-info">
+            <button id="subscribeButton" class="subscribe-button subscribe">
+              Subscribe
+            </button>
+            <div class="subscriber-count ml-[10px]">
+              <span id="subscriberCount">100</span> Subscribers
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Row -->
+      <div class="flex justify-center mt-8 space-x-6">
+        <button
+          id="videosTab"
+          class="nav-item py-2 px-6 rounded-lg text-gray-200 bg-indigo-500 hover:bg-indigo-600"
+        >
+          Videos
+        </button>
+        <button
+          id="playlistsTab"
+          class="nav-item py-2 px-6 rounded-lg text-gray-200 bg-gray-700 hover:bg-indigo-600"
+        >
+          Playlists
+        </button>
+        <button
+          id="postsTab"
+          class="nav-item py-2 px-6 rounded-lg text-gray-200 bg-gray-700 hover:bg-indigo-600"
+        >
+          Posts
+        </button>
+      </div>
+
+      <!-- Video Section -->
+      <div id="videosSection" class="content-section active mt-8">
+        <h2 class="text-xl font-semibold text-gray-100 mb-4" id="videoHeading">
+          Your Videos
+        </h2>
+        <div
+          id="videoGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- JS will inject video boxes here -->
+        </div>
+      </div>
+
+      <div id="playlistsSection" class="content-section mt-8">
+        <h2
+          class="text-xl font-semibold text-gray-100 mb-4"
+          id="playlistHeading"
+        >
+          Your Playlists
+        </h2>
+        <div
+          id="playlistGrid"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- JS will inject playlist boxes here -->
+        </div>
+      </div>
+
+      <div id="postsSection" class="content-section mt-8">
+        <h2 id="postsHeading" class="text-xl font-semibold text-gray-100 mb-4">
+          Your Posts
+        </h2>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          id="postContainer"
+        >
+          <!-- JS will inject posts here -->
+        </div>
+      </div>
+    </div>
+
+    <!--  JavaScript for Navigation Switching -->
+    <script>
+      const videosTab = document.getElementById('videosTab');
+      const playlistsTab = document.getElementById('playlistsTab');
+      const postsTab = document.getElementById('postsTab');
+      const videosSection = document.getElementById('videosSection');
+      const playlistsSection = document.getElementById('playlistsSection');
+      const postsSection = document.getElementById('postsSection');
+
+      // Function to handle section switching
+      function switchSection(activeTab, activeSection) {
+        // Reset active state for all tabs and sections
+        document.querySelectorAll('.nav-item').forEach((tab) => {
+          tab.classList.remove('bg-indigo-500', 'hover:bg-indigo-600');
+          tab.classList.add('bg-gray-700');
+        });
+        document
+          .querySelectorAll('.content-section')
+          .forEach((section) => section.classList.remove('active'));
+
+        // Set the active tab and section
+        activeTab.classList.add('bg-indigo-500', 'hover:bg-indigo-600');
+        activeSection.classList.add('active');
+      }
+
+      // Event listeners for tab switching
+      videosTab.addEventListener('click', () =>
+        switchSection(videosTab, videosSection)
+      );
+      playlistsTab.addEventListener('click', () =>
+        switchSection(playlistsTab, playlistsSection)
+      );
+      postsTab.addEventListener('click', () =>
+        switchSection(postsTab, postsSection)
+      );
+    </script>
+
+    <script type="module" src="./userApiHandler/5.fetch.user.js"></script>
+
+    <!-- script for fetch user Videos details -->
+    <script
+      type="module"
+      src="./userApiHandler/8.viewProfileVideoFetch.user.js"
+    ></script>
+
+    <!-- script for fetch user Playlists details -->
+    <script
+      type="module"
+      src="./userApiHandler/9.viewProfilePlaylistFetch.user.js"
+    ></script>
+
+    <!-- script for fetch user Posts details -->
+    <script
+      type="module"
+      src="./userApiHandler/10.viewProfilePostsFetch.user.js"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VidStream | Video Streaming Platform</title>
+    <link
+      rel="shortcut icon"
+      href="./faviconImages/android-chrome-192x192.png"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"
+      integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      /* Custom animation for dropdown */
+      .dropdown-enter {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      .dropdown-enter-active {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .dropdown-leave {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .dropdown-leave-active {
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .video-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Animation for new video boxes */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeInUp 0.6s ease-out;
+      }
+    </style>
+  </head>
+  <body class="bg-[#2a2e35] text-[#e5e7eb] min-h-screen">
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <nav
+        class="w-[240px] bg-gray-800 text-[#e5e7eb] h-[98%] fixed rounded-xl top-2 left-2 shadow-lg"
+      >
+        <div class="py-6 px-4">
+          <a href="#" class="text-2xl font-semibold text-blue-600">VidStream</a>
+        </div>
+        <ul class="mt-4 space-y-2">
+          <li>
+            <a
+              href="#"
+              class="flex items-center space-x-4 py-2 px-4 hover:bg-gray-700"
+            >
+              <i class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center space-x-4 py-2 px-4 hover:bg-gray-700"
+            >
+              <i class="fa-solid fa-fire"></i>
+              <span>Trending</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center space-x-4 py-2 px-4 hover:bg-gray-700"
+            >
+              <i class="fa-solid fa-folder"></i>
+              <span>Your Library</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center space-x-4 py-2 px-4 hover:bg-gray-700"
+            >
+              <i class="fa-solid fa-clock"></i>
+              <span>Watch Later</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="flex items-center space-x-4 py-2 px-4 hover:bg-gray-700"
+            >
+              <i class="fa-solid fa-thumbs-up"></i>
+              <span>Liked Videos</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <div class="flex-1 flex flex-col pl-64">
+        <!-- Top Bar -->
+        <header
+          class="bg-gray-800 text-[#e5e7eb] rounded-xl shadow-lg px-6 py-4 flex justify-between items-center fixed z-10 top-0 left-64 right-0"
+        >
+          <!-- Search bar -->
+          <div class="w-full flex justify-center">
+            <div class="relative w-3/4">
+              <input
+                type="text"
+                id="inputSearch"
+                placeholder="Search for channels ..."
+                class="w-full bg-gray-700 py-2 pl-10 pr-4 rounded-lg border border-gray-600 focus:outline-none"
+              />
+              <button id="searchbtn">
+                <i
+                  class="fa-solid fa-magnifying-glass absolute top-[12.5px] left-3 text-gray-400"
+                ></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- notification bell and profile -->
+          <div class="flex items-center space-x-6">
+            <button class="relative">
+              <i class="fa-solid fa-bell h-5 w-5"></i>
+              <span
+                class="absolute top-0 right-0 bg-red-600 rounded-full"
+              ></span>
+            </button>
+            <!-- Profile Icon with Dropdown -->
+            <div class="relative inline-block text-left">
+              <button
+                id="profileButton"
+                class="focus:outline-none"
+                onclick="toggleDropdown()"
+              >
+                <i class="fa-solid fa-ellipsis-vertical h-5 w-5"></i>
+              </button>
+
+              <!-- Dropdown Menu -->
+              <div
+                id="profileDropdown"
+                class="hidden absolute right-0 mt-2 w-48 bg-[#2a2e35] rounded-lg shadow-lg z-20 overflow-hidden"
+              >
+                <!-- View Profile -->
+                <div
+                  class="flex items-center justify-start pl-5 hover:bg-gray-700"
+                >
+                  <i class="fa-solid fa-user"></i>
+                  <a
+                    id="viewProfileBtn"
+                    class="block px-4 py-2 text-sm text-[#e5e7eb] cursor-pointer"
+                  >
+                    View Profile
+                  </a>
+                </div>
+
+                <!-- Video Upload -->
+                <div
+                  class="flex items-center justify-start pl-5 hover:bg-gray-700"
+                >
+                  <i class="fa-solid fa-video"></i>
+                  <a
+                    href="./uploadVideoPage.html"
+                    class="block px-4 py-2 text-sm text-[#e5e7eb]"
+                    >Video Upload</a
+                  >
+                </div>
+
+                <!-- Post Create -->
+                <div
+                  class="flex items-center justify-start pl-5 hover:bg-gray-700"
+                >
+                  <i class="fa-solid fa-message"></i>
+                  <a
+                    href="./uploadPostPage.html"
+                    class="block px-4 py-2 text-sm text-[#e5e7eb]"
+                    >Create Post</a
+                  >
+                </div>
+
+                <!-- Playlist Create -->
+                <div
+                  class="flex items-center justify-start pl-5 hover:bg-gray-700"
+                >
+                  <i class="fa-solid fa-list"></i>
+                  <a
+                    href="./uploadPlaylistPage.html"
+                    class="block px-4 py-2 text-sm text-[#e5e7eb]"
+                    >Create Playlist</a
+                  >
+                </div>
+
+                <!-- Change Password -->
+                <div
+                  class="flex items-center justify-start pl-5 hover:bg-gray-700"
+                >
+                  <i class="fa-solid fa-key"></i>
+                  <a
+                    href="./changePassword.html"
+                    class="block px-4 py-2 text-sm text-[#e5e7eb]"
+                    >Change Password</a
+                  >
+                </div>
+
+                <!-- Logout Section -->
+                <div
+                  class="flex items-center justify-start pl-5 hover:bg-gray-700"
+                >
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <a
+                    href="#"
+                    id="logout"
+                    class="block px-4 py-2 text-sm text-[#e5e7eb]"
+                    >Logout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Video Grid -->
+        <main class="flex-1 bg-gray-800 text-[#e5e7eb] pt-24 p-6">
+          <div
+            id="videoGrid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden"
+          >
+            <!-- Videos will be appended here -->
+          </div>
+
+          <!-- Loading spinner -->
+          <div id="loadingSpinner" class="text-center my-8 hidden">
+            <div
+              class="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-purple-600"
+            ></div>
+            <p class="mt-2 text-gray-600">Loading more videos...</p>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- JavaScript for Dropdown -->
+    <script>
+      function toggleDropdown() {
+        const dropdown = document.getElementById('profileDropdown');
+        if (dropdown.classList.contains('hidden')) {
+          dropdown.classList.remove('hidden');
+          dropdown.classList.add('dropdown-enter-active');
+        } else {
+          dropdown.classList.add('dropdown-leave-active');
+          setTimeout(() => {
+            dropdown.classList.remove(
+              'dropdown-enter-active',
+              'dropdown-leave-active'
+            );
+            dropdown.classList.add('hidden');
+          }, 300);
+        }
+      }
+
+      // Close the dropdown if clicked outside
+      window.onclick = function (event) {
+        if (!event.target.closest('#profileButton')) {
+          document.getElementById('profileDropdown').classList.add('hidden');
+        }
+      };
+    </script>
+
+    <!-- JavaScript for go to viewProfile page -->
+    <script>
+      const URL = `http://localhost:3000`;
+      const URL2 = `https://f6bc56bd-fded-47ac-a3b5-bad6eac9c752.e1-eu-north-azure.choreoapps.dev`;
+      // fetchCurrentUser
+      document
+        .querySelector('#viewProfileBtn')
+        .addEventListener('click', async () => {
+          const response = await fetch(`${URL2}/api/v1/users/current-user`, {
+            method: 'GET',
+            credentials: 'include',
+          });
+
+          const data = await response.json();
+
+          // Update the URL with the userName and userId parameter
+          window.location.href = `/form/viewProfile.html?username=${encodeURIComponent(
+            data.data.userName
+          )}?query=${encodeURIComponent(data.data._id)}`;
+        });
+    </script>
+
+    <script type="module" src="./userApiHandler/4.logout.user.js"></script>
+
+    <script
+      type="module"
+      src="./videoApiHandler/3.videoLoader.video.js"
+    ></script>
+
+    <script
+      type="module"
+      src="./userApiHandler/7.fetchOtherChannel.user.js"
+    ></script>
+  </body>
+</html>

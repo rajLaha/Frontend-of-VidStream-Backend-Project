@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="shortcut icon"
+      href="./faviconImages/android-chrome-192x192.png"
+      type="image/x-icon"
+    />
+    <title>Login | Register User</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <!------------------------------ Login --------------------------------------->
+
+        <div class="box-login" id="login">
+          <div class="top-header">
+            <h3>Hello, User!</h3>
+            <small>We are happy to have you back.</small>
+          </div>
+          <form
+            action="/login"
+            id="loginForm"
+            class="input-group"
+            method="post"
+          >
+            <div class="input-field">
+              <input
+                type="text"
+                class="input-box loginInput-box"
+                id="email"
+                name="email"
+                required
+              />
+              <label for="email">Email address</label>
+            </div>
+            <div class="input-field loginInput-field">
+              <input
+                type="password"
+                class="input-box loginInput-box"
+                id="logPassword"
+                name="password"
+                required
+              />
+              <label for="password">Password</label>
+              <div class="eye-area eye-area-log">
+                <div class="eye-box" onclick="myLogPassword()">
+                  <i class="fa-regular fa-eye" id="eye"></i>
+                  <i class="fa-regular fa-eye-slash" id="eye-slash"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="input-field loginInput-field">
+              <button type="submit" class="input-submit" required>
+                Sign In
+              </button>
+            </div>
+            <div class="forgot">
+              <a href="#">Forgot password?</a>
+            </div>
+          </form>
+        </div>
+
+        <!---------------------------- register --------------------------------------->
+
+        <div class="box-register" id="register">
+          <div class="top-header">
+            <h3>Sign Up, Now!</h3>
+            <small>We are happy to have you with us.</small>
+          </div>
+
+          <form
+            action="/register"
+            id="form"
+            enctype="multipart/form-data"
+            class="input-group"
+            method="post"
+          >
+            <!-- username -->
+            <div class="input-field">
+              <input
+                type="text"
+                class="input-box"
+                id="userName"
+                name="userName"
+                required
+              />
+              <label for="userName">Username</label>
+            </div>
+
+            <!-- fullName -->
+            <div class="input-field">
+              <input
+                type="text"
+                class="input-box"
+                id="fullName"
+                name="fullName"
+                required
+              />
+              <label for="fullName">Full Name</label>
+            </div>
+
+            <!-- email -->
+            <div class="input-field">
+              <input
+                type="text"
+                class="input-box"
+                id="email"
+                name="email"
+                required
+              />
+              <label for="email">Email address</label>
+            </div>
+
+            <!-- password -->
+            <div class="input-field">
+              <input
+                type="password"
+                class="input-box"
+                id="password"
+                name="password"
+                required
+              />
+              <label for="password">Password</label>
+              <div class="eye-area">
+                <div class="eye-box" onclick="myRegPassword()">
+                  <i class="fa-regular fa-eye" id="eye-2"></i>
+                  <i class="fa-regular fa-eye-slash" id="eye-slash-2"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="box-flex">
+              <!-- avatar -->
+              <div class="flex">
+                <label id="labelAvatar" for="avatar">Avatar</label>
+                <input type="file" id="avatar" name="avatar" required />
+              </div>
+
+              <!-- coverImage -->
+              <div class="flex">
+                <label id="labelCoverImage" for="coverImage">Banner</label>
+                <input type="file" id="coverImage" name="coverImage" required />
+              </div>
+            </div>
+
+            <div class="input-field">
+              <button
+                type="submit"
+                class="input-submit"
+                id="submitBtn"
+                required
+              >
+                Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="switch">
+          <a href="#" class="login active" onclick="login()">Login</a>
+          <a href="#" class="register" onclick="register()">Register</a>
+          <div class="btn-active" id="btn"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loader -->
+    <div
+      id="loader"
+      class="w-full h-full fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center"
+    >
+      <div
+        class="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500"
+      ></div>
+    </div>
+
+    <!-- all scripts -->
+    <script src="./style.js"></script>
+
+    <script type="module" src="./userApiHandler/1.register.user.js"></script>
+
+    <script type="module" src="./userApiHandler/2.login.user.js"></script>
+  </body>
+</html>

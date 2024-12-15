@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playlist Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="shortcut icon"
+      href="./faviconImages/android-chrome-192x192.png"
+      type="image/x-icon"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #2a2e35;
+        color: #e5e7eb;
+      }
+    </style>
+  </head>
+  <body class="p-8">
+    <!-- Playlist Container -->
+    <div
+      class="container mx-auto bg-gray-800 bg-opacity-90 rounded-lg p-6 shadow-lg"
+    >
+      <!-- Home Button -->
+      <button
+        class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg"
+      >
+        <a href="/form/homepageVid.html">Home</a>
+      </button>
+
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h2 id="playlistTitle" class="text-3xl font-bold text-gray-100">
+          Playlist Title
+        </h2>
+        <p id="playlistDescription" class="text-gray-400 mt-2">
+          Playlist description goes here.
+        </p>
+      </div>
+
+      <!-- Video Grid -->
+      <div
+        id="videoGrid"
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+      >
+        <!-- Videos will be dynamically added here -->
+      </div>
+    </div>
+
+    <script
+      type="module"
+      src="./playlistApiHandler/3.viewPlaylist.playlist.js"
+    ></script>
+  </body>
+</html>

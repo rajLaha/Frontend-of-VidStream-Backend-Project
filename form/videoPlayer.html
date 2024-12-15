@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Streaming Platform</title>
+    <link
+      rel="shortcut icon"
+      href="./faviconImages/android-chrome-192x192.png"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #2a2e35;
+        color: #e5e7eb;
+        padding: 40px;
+      }
+
+      /* Subscribe button styling */
+      .subscribe-button {
+        display: inline-block;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .subscribed {
+        background-color: #585682;
+        color: white;
+      }
+
+      .subscribe {
+        background-color: #e11d48;
+        color: white;
+      }
+
+      .subscribe:hover {
+        background-color: #c81e38;
+      }
+
+      .subscribed:hover {
+        background-color: #454782;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-100">
+    <!-- Loader -->
+    <div
+      id="loader"
+      class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden flex items-center justify-center"
+    >
+      <div
+        class="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500"
+      ></div>
+    </div>
+
+    <!-- Home Button -->
+    <button class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">
+      <a href="/form/homepageVid.html">Home</a>
+    </button>
+
+    <!-- Main Content -->
+    <div
+      id="mainVideoBox"
+      class="container mx-auto mt-8 flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-6"
+    >
+      <!-- Dialog Box -->
+      <div
+        id="dialogBox"
+        class="fixed inset-0 flex items-center justify-center z-50 hidden bg-gray-900 bg-opacity-80"
+      >
+        <div
+          class="w-96 max-w-full p-6 bg-gray-900 rounded-lg shadow-lg space-y-6"
+        >
+          <!-- Dialog Header -->
+          <div>
+            <h3 class="text-xl font-semibold text-gray-100">Video Details</h3>
+            <small class="text-gray-400"
+              >Please add details for the video</small
+            >
+          </div>
+
+          <form
+            action="/"
+            id="updateVideoForm"
+            class="space-y-6"
+            enctype="multipart/form-data"
+          >
+            <!-- Title Input -->
+            <div class="relative mt-4">
+              <input
+                type="text"
+                id="titleInput"
+                name="title"
+                class="w-full p-3 bg-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+              />
+              <label
+                for="titleInput"
+                class="absolute -top-2 left-3 px-1 text-xs bg-gray-900 text-gray-500"
+                >Video Title</label
+              >
+            </div>
+
+            <!-- Description Input -->
+            <div class="relative mt-4">
+              <textarea
+                id="descriptionInput"
+                name="description"
+                class="w-full p-3 bg-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                rows="3"
+              ></textarea>
+              <label
+                for="descriptionInput"
+                class="absolute -top-2 left-3 px-1 text-xs bg-gray-900 text-gray-500"
+                >Description</label
+              >
+            </div>
+
+            <!-- Thumbnail Input -->
+            <div class="relative mt-4">
+              <input
+                type="file"
+                name="thumbnail"
+                id="thumbnailInput"
+                class="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+              />
+              <label
+                for="thumbnailInput"
+                class="absolute -top-2 left-3 px-1 text-xs bg-gray-900 text-gray-500"
+                >Thumbnail</label
+              >
+            </div>
+
+            <!-- Save Button -->
+            <div class="mt-6 flex gap-x-[10px] justify-center">
+              <button
+                id="dialogSave"
+                type="submit"
+                class="w-[40%] p-3 bg-blue-600 text-white rounded font-semibold hover:bg-blue-700"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+
+          <!-- Cancel Button -->
+          <div class="mt-6 flex gap-x-[10px] justify-center">
+            <button
+              id="dialogCancel"
+              class="w-[40%] p-3 bg-red-600 text-white rounded font-semibold hover:bg-red-700"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Section -->
+      <div class="w-full lg:w-2/3 bg-gray-800 shadow-md rounded-lg p-4">
+        <video
+          id="mainVideo"
+          class="w-[1250px] h-[550px] rounded-lg"
+          controls
+          src=""
+        ></video>
+        <h2 id="videoTitle" class="mt-4 text-xl font-semibold"></h2>
+        <p id="videoInfo" class="text-gray-400 mt-2"></p>
+
+        <!-- Video Owner Section -->
+        <div class="mt-6 flex items-center space-x-4">
+          <!-- Avatar -->
+          <img
+            src="https://via.placeholder.com/50"
+            id="ownerAvatar"
+            alt="Avatar"
+            class="rounded-full w-12 h-12 bg-cover"
+          />
+
+          <!-- User Details -->
+          <div class="flex-1">
+            <p id="videoOwner" class="text-lg font-semibold"></p>
+            <p id="ownerSubscriber" class="text-gray-400"></p>
+          </div>
+
+          <!-- Subscribe Button -->
+          <button id="subscribeButton" class="subscribe-button subscribe">
+            Subscribe
+          </button>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-4 flex space-x-4">
+          <button
+            id="likeButton"
+            class="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center space-x-2"
+          >
+            <i class="fa-solid fa-thumbs-up"></i>
+            <p id="likeCount">1</p>
+            <span id="likeButtonText">Like</span>
+          </button>
+          <button
+            class="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center space-x-2"
+          >
+            <i class="fa-solid fa-share"></i>
+            <span>Share</span>
+          </button>
+          <button
+            id="editVideoBtn"
+            class="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center space-x-2"
+          >
+            <i class="fa-solid fa-pen"></i>
+            <span>Edit Title / Description</span>
+          </button>
+          <button
+            id="deleteVideoBtn"
+            class="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center space-x-2"
+          >
+            <i class="fa-solid fa-trash"></i>
+            <span>Delete</span>
+          </button>
+          <button
+            id="addPlaylistBtn"
+            class="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center space-x-2"
+          >
+            <i class="fa-solid fa-list"></i>
+            <span>Add to Playlist</span>
+          </button>
+        </div>
+
+        <!-- Video Description -->
+        <div class="mt-6">
+          <h3 class="font-semibold">Description</h3>
+          <p class="mt-2 text-gray-300" id="videoDescription">
+            This is a brief description of the video. It gives more insight into
+            the content of the video.
+          </p>
+        </div>
+      </div>
+
+      <!-- Comments Section -->
+      <div
+        class="w-full lg:w-1/3 space-y-4 bg-gray-800 p-4 rounded-lg shadow-md"
+      >
+        <h3 class="text-lg font-semibold">Comments</h3>
+
+        <!-- Add Comment Section -->
+        <div class="mb-6">
+          <textarea
+            id="commentInput"
+            class="w-full p-3 bg-gray-700 text-gray-200 rounded-md"
+            rows="3"
+            placeholder="Add a public comment..."
+          ></textarea>
+          <button
+            id="submitComment"
+            class="mt-2 px-4 py-2 bg-indigo-500 text-white rounded-lg"
+          >
+            Comment
+          </button>
+        </div>
+
+        <!-- Scrollable Comment Box -->
+        <div
+          id="commentsSection"
+          class="overflow-y-scroll max-h-[530px] space-y-4"
+        >
+          <!-- Spinner element -->
+          <div
+            id="loader"
+            class="hidden w-10 h-10 border-4 border-t-blue-500 border-gray-300 rounded-full animate-spin fixed bottom-5 right-5"
+          ></div>
+
+          <p id="noComments" class="text-gray-400">No comments yet.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Font Awesome Icons -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"
+      integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- JavaScript for Adding Comments -->
+    <script
+      type="module"
+      src="./commentApiHandler/1.commentFetch.comments.js"
+    ></script>
+
+    <!-- JavaScript for Video Handle -->
+    <script
+      type="module"
+      src="./videoApiHandler/2.videoHandler.video.js"
+    ></script>
+
+    <!-- JavaScript for Add Video to Playlist -->
+    <script
+      type="module"
+      src="./playlistApiHandler/2.addVideoInPlaylist.playlist.js"
+    ></script>
+  </body>
+</html>
