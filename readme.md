@@ -47,13 +47,13 @@ project-folder/
 Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/rajLaha/Frontend-of-VidStream-Backend-Project-
+git clone https://github.com/rajLaha/VidStream-Frontend
 ```
 
 ### Navigate to the Project Directory
 
 ```bash
-cd Frontend-of-VidStream-Backend-Project
+cd vidstream-frontend
 ```
 
 ### Open in Browser
