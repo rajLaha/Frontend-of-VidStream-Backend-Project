@@ -120,3 +120,29 @@ if (removeBtns) {
     });
   });
 }
+
+const deletePlaylist = async () => {
+  try {
+    const response = await fetch(`${URL}/api/v1/playlists/${playlistId}`, {
+      method: 'delete',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      alert('Playlist Delete Succesfully');
+      location.href = `./homepageVid.html`;
+    } else {
+      alert(response.message);
+      location.reload();
+    }
+  } catch (error) {
+    alert(error);
+    location.reload();
+  }
+};
+
+const dltBtn = document.querySelector('#dltBtn');
+dltBtn.addEventListener('click', deletePlaylist());
