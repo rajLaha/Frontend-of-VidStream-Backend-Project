@@ -12,6 +12,7 @@ const videoUploadHandler = async (e) => {
 
   //   get all the data from frontend
   const formData = new FormData(e.target);
+  console.log(formData);
 
   try {
     const response = await fetch(`${URL}/api/v1/videos/`, {
@@ -19,8 +20,11 @@ const videoUploadHandler = async (e) => {
       credentials: 'include',
       body: formData,
     });
+    console.log(response);
 
     const responseMsg = await response.json();
+
+    console.log(responseMsg);
 
     if (!response.ok) {
       alert(responseMsg || 'Video Upload failed! Please try again.');
@@ -32,7 +36,7 @@ const videoUploadHandler = async (e) => {
   } catch (error) {
     console.log(error);
     alert(error || 'Video Upload failed! Please try again.');
-    location.reload();
+    // location.reload();
   } finally {
     // Hide the loader after data is fetched or error occurs
     loader.classList.add('hidden');
