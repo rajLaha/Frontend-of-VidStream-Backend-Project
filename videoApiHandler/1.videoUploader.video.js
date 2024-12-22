@@ -3,6 +3,17 @@ import { URL } from '../export/export.variable.js';
 const uploadForm = document.querySelector('#uploadForm');
 const loader = document.getElementById('loader');
 
+const fileInput = document.querySelector('#video');
+fileInput.addEventListener('change', () => {
+  const file = fileInput.files[0];
+  if (file.size > 100 * 1024 * 1024) {
+    // 100MB limit
+    alert('File is too large! Maximum size is 100MB.');
+  } else {
+    console.log('File is ready to upload.');
+  }
+});
+
 // Handle Video uplaod form
 const videoUploadHandler = async (e) => {
   e.preventDefault();
@@ -19,6 +30,9 @@ const videoUploadHandler = async (e) => {
       method: 'POST',
       credentials: 'include',
       body: formData,
+      headers: {
+        Accept: 'application/json',
+      },
     });
     console.log(response);
 
