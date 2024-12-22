@@ -75,7 +75,7 @@
     <!-- Main Content -->
     <div
       id="mainVideoBox"
-      class="container mx-auto mt-8 flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-6"
+      class="container h-full mx-auto md:mt-8 md:ml-2 flex flex-col lg:flex-row space-y-8 lg:space-y-0 lg:space-x-6"
     >
       <!-- Dialog Box -->
       <div
@@ -169,10 +169,10 @@
       </div>
 
       <!-- Video Section -->
-      <div class="w-full lg:w-2/3 bg-gray-800 shadow-md rounded-lg p-4">
+      <div class="w-full lg:w-2/3 bg-gray-800 shadow-md rounded-lg p-2 md:p-4">
         <video
           id="mainVideo"
-          class="w-[1250px] h-[550px] rounded-lg"
+          class="w-full h-[240px] md:w-[1250px] md:h-[550px] rounded-lg"
           controls
           src=""
         ></video>
@@ -191,52 +191,49 @@
 
           <!-- User Details -->
           <div class="flex-1">
-            <p id="videoOwner" class="text-lg font-semibold"></p>
+            <p id="videoOwner" class="font-semibold text-sm md:text-lg"></p>
             <p id="ownerSubscriber" class="text-gray-400"></p>
           </div>
 
           <!-- Subscribe Button -->
-          <button id="subscribeButton" class="subscribe-button subscribe">
+          <button
+            id="subscribeButton"
+            class="subscribe-button subscribe text-sm md:text-lg"
+          >
             Subscribe
           </button>
         </div>
 
         <!-- Action Buttons -->
-        <div class="mt-4 flex space-x-4">
+        <div class="mt-4 flex space-x-1.5 md:space-x-4">
           <button
             id="likeButton"
             class="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center space-x-2"
           >
             <i class="fa-solid fa-thumbs-up"></i>
-            <p id="likeCount">1</p>
-            <span id="likeButtonText">Like</span>
           </button>
           <button
             class="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center space-x-2"
           >
             <i class="fa-solid fa-share"></i>
-            <span>Share</span>
           </button>
           <button
             id="editVideoBtn"
             class="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center space-x-2"
           >
             <i class="fa-solid fa-pen"></i>
-            <span>Edit Title / Description</span>
           </button>
           <button
             id="deleteVideoBtn"
             class="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center space-x-2"
           >
             <i class="fa-solid fa-trash"></i>
-            <span>Delete</span>
           </button>
           <button
             id="addPlaylistBtn"
             class="px-4 py-2 bg-gray-600 text-white rounded-lg flex items-center space-x-2"
           >
             <i class="fa-solid fa-list"></i>
-            <span>Add to Playlist</span>
           </button>
         </div>
 
@@ -297,21 +294,21 @@
     ></script>
 
     <!-- JavaScript for Adding Comments -->
-    <script
+    <!-- <script
       type="module"
       src="./commentApiHandler/1.commentFetch.comments.js"
-    ></script>
+    ></script> -->
 
     <!-- JavaScript for Video Handle -->
-    <script
+    <!-- <script
       type="module"
       src="./videoApiHandler/2.videoHandler.video.js"
-    ></script>
+    ></script> -->
 
     <!-- JavaScript for Add Video to Playlist -->
-    <script
+    <!-- <script
       type="module"
       src="./playlistApiHandler/2.addVideoInPlaylist.playlist.js"
-    ></script>
+    ></script> -->
   </body>
 </html>

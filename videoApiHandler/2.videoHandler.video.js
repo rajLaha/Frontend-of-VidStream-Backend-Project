@@ -186,16 +186,12 @@ subscribeHandler();
 // <!------------------------ LikeButtonToggle ------------------------------->
 const videoLikeHandler = async () => {
   const likeButton = document.getElementById('likeButton');
-  const likeButtonText = document.getElementById('likeButtonText');
-  const likeCount = document.getElementById('likeCount');
 
   const like = () => {
-    likeButtonText.textContent = 'Like';
     likeButton.classList.replace('bg-indigo-500', 'bg-gray-600');
   };
 
   const liked = () => {
-    likeButtonText.textContent = 'Liked';
     likeButton.classList.replace('bg-gray-600', 'bg-indigo-500');
   };
 
