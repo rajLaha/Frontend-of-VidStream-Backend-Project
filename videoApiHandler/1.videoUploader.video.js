@@ -4,8 +4,12 @@ const uploadForm = document.querySelector('#uploadForm');
 const loader = document.getElementById('loader');
 
 const fileInput = document.querySelector('#video');
+const file = fileInput.files[0];
+
+const fileInputThumbnail = document.querySelector('#thumbnail');
+const fileThumbnail = fileInputThumbnail.files[0];
+
 fileInput.addEventListener('change', () => {
-  const file = fileInput.files[0];
   if (file.size > 100 * 1024 * 1024) {
     // 100MB limit
     alert('File is too large! Maximum size is 100MB.');
@@ -23,17 +27,16 @@ const videoUploadHandler = async (e) => {
 
   //   get all the data from frontend
   const formData = new FormData(e.target);
-  console.log(formData);
+  formData.append('videoFile', file);
+  formData.append('thumbnail', fileThumbnail);
 
   try {
     const response = await fetch(`${URL}/api/v1/videos/`, {
       method: 'POST',
       credentials: 'include',
       body: formData,
-      headers: {
-        Accept: 'application/json',
-      },
     });
+
     console.log(response);
 
     const responseMsg = await response.json();
