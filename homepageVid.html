@@ -195,7 +195,7 @@
         <main class="flex-1 bg-gray-800 text-[#e5e7eb] pt-24 p-6">
           <div
             id="videoGrid"
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden overflow-y-auto"
           >
             <!-- Videos will be appended here -->
           </div>
@@ -240,7 +240,7 @@
 
     <!-- JavaScript for go to viewProfile page -->
     <script>
-      const URL = `https://c079e8f5-2ba4-4513-a3c2-a8bce9ed3821.e1-eu-north-azure.choreoapps.dev`;
+      const URL = `http://localhost:8000`;
       // fetchCurrentUser
       document
         .querySelector('#viewProfileBtn')
