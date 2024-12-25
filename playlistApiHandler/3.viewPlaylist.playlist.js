@@ -145,4 +145,4 @@ const deletePlaylist = async () => {
 };
 
 const dltBtn = document.querySelector('#dltBtn');
-dltBtn.addEventListener('click', deletePlaylist());
+dltBtn.addEventListener('click', deletePlaylist);

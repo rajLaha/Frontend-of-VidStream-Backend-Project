@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VidStream Project</title>
+    <link
+      rel="shortcut icon"
+      href="./faviconImages/android-chrome-192x192.png"
+      type="image/x-icon"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+      body {
+        scroll-behavior: smooth;
+      }
+      .fade-in {
+        animation: fadeIn 2s ease-in;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-white font-sans">
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full bg-gray-800 z-50">
+      <div
+        class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center"
+      >
+        <h1 class="text-2xl font-bold">VidStream</h1>
+        <div class="space-x-4">
+          <a href="#overview" class="hover:underline">Overview</a>
+          <a href="#frontend" class="hover:underline">Frontend</a>
+          <a href="#backend" class="hover:underline">Backend</a>
+          <a href="#tech" class="hover:underline">Technologies</a>
+          <a href="#contact" class="hover:underline">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="h-screen bg-cover bg-center relative"
+      style="
+        background-image: url('https://source.unsplash.com/1600x900/?streaming,technology');
+      "
+    >
+      <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+      <div class="relative z-10 flex items-center justify-center h-full">
+        <div class="text-center fade-in">
+          <h1 class="text-5xl font-bold mb-4">Welcome to VidStream</h1>
+          <p class="text-xl">Your ultimate video streaming solution</p>
+          <a
+            href="#overview"
+            class="mt-6 inline-block px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded shadow"
+            >Learn More</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-16 bg-gray-800">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4">Overview</h2>
+        <p class="text-lg">
+          VidStream is a robust video streaming platform designed with
+          scalability and performance in mind. It integrates a seamless user
+          experience, advanced video encoding, and a reliable backend
+          architecture to ensure the best performance for your video streaming
+          needs.
+        </p>
+      </div>
+    </section>
+
+    <!-- Frontend Section -->
+    <section id="frontend" class="py-16 bg-gray-700">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="md:w-1/2 md:pr-8">
+            <h2 class="text-3xl font-bold mb-4">Frontend</h2>
+            <p class="mb-4">
+              Our frontend is meticulously designed to ensure an intuitive user
+              experience. It features dynamic video listings, a powerful search
+              functionality, and personalized video recommendations tailored to
+              individual user preferences. Accessibility and responsiveness are
+              paramount, ensuring a seamless experience across devices.
+            </p>
+            <ul class="list-disc ml-6">
+              <li>
+                <strong>HTML:</strong> For structuring the webpage content.
+              </li>
+              <li>
+                <strong>TailwindCSS:</strong> For a utility-first, responsive
+                design.
+              </li>
+              <li>
+                <strong>Custom CSS:</strong> To add unique styles and
+                animations.
+              </li>
+              <li>
+                <strong>JavaScript:</strong> For interactive elements and
+                client-side logic.
+              </li>
+            </ul>
+          </div>
+          <div class="md:w-1/2">
+            <lottie-player
+              src="https://assets8.lottiefiles.com/packages/lf20_puciaact.json"
+              background="transparent"
+              speed="1"
+              style="width: 100%; height: 300px"
+              loop
+              autoplay
+            ></lottie-player>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Backend Section -->
+    <section id="backend" class="py-16 bg-gray-800">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row-reverse items-center">
+          <div class="md:w-1/2 md:pl-8">
+            <h2 class="text-3xl font-bold mb-4">Backend</h2>
+            <p class="mb-4">
+              The backend architecture of VidStream is designed for high
+              performance and reliability. From secure user authentication to
+              real-time analytics, every aspect is built to handle heavy traffic
+              and ensure data security. Features like video encoding and
+              seamless integration with Cloudinary for video management provide
+              a streamlined experience for both users and administrators.
+            </p>
+            <ul class="list-disc ml-6">
+              <li>
+                <strong>Node.js:</strong> Handles server-side operations and
+                scalability.
+              </li>
+              <li>
+                <strong>Express:</strong> A fast and lightweight framework for
+                routing and middleware.
+              </li>
+              <li>
+                <strong>Bcrypt:</strong> Secures user passwords through hashing.
+              </li>
+              <li>
+                <strong>Cloudinary:</strong> Manages video uploads and
+                streaming.
+              </li>
+              <li>
+                <strong>Cookie-parser:</strong> Parses and manages cookies for
+                user sessions.
+              </li>
+              <li><strong>CORS:</strong> Enables cross-origin requests.</li>
+              <li>
+                <strong>Dotenv:</strong> Loads environment variables for
+                configuration.
+              </li>
+              <li>
+                <strong>JSON Web Token (JWT):</strong> Handles secure
+                authentication.
+              </li>
+              <li>
+                <strong>Mongoose:</strong> Manages database interactions with
+                MongoDB.
+              </li>
+              <li><strong>Multer:</strong> Processes file uploads.</li>
+            </ul>
+          </div>
+          <div class="md:w-1/2">
+            <lottie-player
+              src="https://assets4.lottiefiles.com/packages/lf20_w51pcehl.json"
+              background="transparent"
+              speed="1"
+              style="width: 100%; height: 300px"
+              loop
+              autoplay
+            ></lottie-player>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section id="tech" class="py-16 bg-gray-700">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4">Technologies</h2>
+        <p class="text-lg mb-4">
+          VidStream leverages the best-in-class technologies to ensure top-notch
+          performance and scalability.
+        </p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="p-4 bg-gray-600 rounded shadow">TailwindCSS</div>
+          <div class="p-4 bg-gray-600 rounded shadow">Node.js</div>
+          <div class="p-4 bg-gray-600 rounded shadow">Express</div>
+          <div class="p-4 bg-gray-600 rounded shadow">Bcrypt</div>
+          <div class="p-4 bg-gray-600 rounded shadow">Cloudinary</div>
+          <div class="p-4 bg-gray-600 rounded shadow">JWT</div>
+          <div class="p-4 bg-gray-600 rounded shadow">Mongoose</div>
+          <div class="p-4 bg-gray-600 rounded shadow">Multer</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-800">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-4">Contact Us</h2>
+        <p class="text-lg mb-4">
+          Want to know more about VidStream? Reach out to us!
+        </p>
+        <a
+          href="mailto:dac000787+vidstream@gmail.com"
+          class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded shadow"
+          >Email Us</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-gray-900 text-center">
+      <p>&copy; 2024 VidStream. All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>

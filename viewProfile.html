@@ -54,8 +54,6 @@
       .homeBtn,
       .profileUpdateBtn {
         display: inline-block;
-        padding: 10px 20px;
-        font-size: 0.875rem;
         border-radius: 6px;
         cursor: pointer;
         transition: background-color 0.3s ease;
@@ -73,6 +71,7 @@
       /* Container for subscribe info */
       .homeSection {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-between;
         margin-top: 1rem;
@@ -122,7 +121,7 @@
 
   <body>
     <div
-      class="container mx-auto bg-gray-800 bg-opacity-90 rounded-lg shadow-lg p-8"
+      class="container mx-auto bg-gray-800 bg-opacity-90 rounded-lg shadow-lg p-5 sm:p-8"
     >
       <!-- Cover Image -->
       <div
@@ -145,13 +144,17 @@
         <p class="text-gray-400" id="email">johndoe@example.com</p>
 
         <!-- Subscribe Button -->
-        <div class="homeSection">
+        <div class="homeSection sm:flex-row">
           <div>
-            <button class="homeBtn home mr-[15px]">
+            <button
+              class="homeBtn home mr-[15px] text-xs md:text-sm py-[10px] px-[20px]"
+            >
               <a href="./homepageVid.html">Home</a>
             </button>
 
-            <button class="profileUpdateBtn home bg-indigo-500 hover:bg-indigo-600">
+            <button
+              class="profileUpdateBtn home bg-indigo-500 hover:bg-indigo-600 text-xs md:text-sm py-[10px] px-[20px]"
+            >
               <a href="./profileUpdate.html">Update Profile</a>
             </button>
           </div>
